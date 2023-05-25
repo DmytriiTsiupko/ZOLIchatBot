@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import TelegramUser
+from .models import User
 
 
-class TelegramUserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TelegramUser
+        model = User
         fields = ('id', 'username', 'phone_number', 'language')
