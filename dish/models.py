@@ -21,9 +21,9 @@ class Dish(models.Model):
     ingredients = models.TextField()
     photo = models.ImageField(upload_to='dishes/', blank=True)
     tag = models.CharField(max_length=50, choices=TAG_CHOICES)
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
 
     def __str__(self):
         return f"{self.tag} {self.name}"
-
 
 
