@@ -22,7 +22,7 @@ async def start_menu_handler(massage: types.Message, state: FSMContext):
 
 # ==== STAR MENU HANDLERS ==== start_command_state
 
-@dp.message_handler(Text(equals='Menu'), state="*")
+@dp.message_handler(Text(equals='\U0001f9d1\u200D\U0001f373Menu'), state="*")
 async def menu_handler(massage: types.Message, state: FSMContext):
 
     await States.menu_state.set()
@@ -30,13 +30,20 @@ async def menu_handler(massage: types.Message, state: FSMContext):
     dishes = await get_dishes()
     tags = set(dish.get('tag') for dish in dishes)
 
-    unique_tags = list(tags)
-    menu_keyboard = get_menu_keyboard(unique_tags)
+    unique_tags = []
+    for tag in tags:
+        if ' ' in tag:
+            splited_tag = tag.split()
+            unique_tags.append(splited_tag[0])
+        else:
+            unique_tags.append(tag)
+
+    menu_keyboard = get_menu_keyboard(set(unique_tags))
 
     await massage.answer(MANE_MANU_MASSAGE, reply_markup=menu_keyboard)
 
 
-@dp.message_handler(Text(equals="Rules"), state="*")
+@dp.message_handler(Text(equals="\U0001f4d5Rules"), state="*")
 async def get_rules(massage: types.Message, state: FSMContext):
 
     await state.reset_state(with_data=False)
@@ -65,9 +72,9 @@ async def tag_handler(message: types.Message, state: FSMContext):
 
             if dishes:
                 # Формуємо повідомлення зі списком страв
-                dish_list = f"{tag}:\n"
+                dish_list = f"{tag.upper()}:\n\n"
                 for dish in dishes:
-                    dish_list += f"- /{dish['name'].replace(' ', '_')}: {dish['description']}\n"
+                    dish_list += f"- /{dish['name'].replace(' ', '_')} ({dish['price']} zł): {dish['description']}\n\n"
 
                 await message.answer(dish_list)
             else:
@@ -90,7 +97,7 @@ async def detail_dish_handler(message: types.Message, state: FSMContext):
         if photo_url:
             photo = await get_photo_from_url(photo_url)
 
-            await message.answer_photo(photo, caption=f"Name: {name.title()}\nDescription: {description}")
+            await message.answer_photo(photo, caption=f"- {name}:\n{description}")
 
         else:
             await message.answer(f"- {name}:\n{description}")
