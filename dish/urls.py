@@ -10,6 +10,6 @@ urlpatterns = [
 
 
 router = DefaultRouter()
-router.register(r'dish', DishViewSet)
+router.register('', DishViewSet)
 
 urlpatterns += router.urls

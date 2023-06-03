@@ -48,6 +48,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ZoliBot.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

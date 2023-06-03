@@ -6,3 +6,5 @@ from .serializers import DishSerializer
 class DishViewSet(viewsets.ModelViewSet):
     queryset = Dish.objects.all()
     serializer_class = DishSerializer
+
+
