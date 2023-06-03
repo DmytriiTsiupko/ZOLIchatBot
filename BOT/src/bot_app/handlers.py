@@ -74,7 +74,12 @@ async def tag_handler(message: types.Message, state: FSMContext):
                 # Формуємо повідомлення зі списком страв
                 dish_list = f"{tag.upper()}:\n\n"
                 for dish in dishes:
-                    dish_list += f"- /{dish['name'].replace(' ', '_')} ({dish['price']} zł): {dish['description']}\n\n"
+                    if dish['is_vegan'] == 'vegetarian':
+                        dish_list += f"- \U0001f96c /{dish['name'].replace(' ', '_')} ({dish['price']} zł): {dish['description']}\n\n"
+                    elif dish['spiciness'] != 'mild':
+                        dish_list += f"- \U0001f336\uFE0F /{dish['name'].replace(' ', '_')} ({dish['price']} zł): {dish['description']}\n\n"
+                    else:
+                        dish_list += f"- /{dish['name'].replace(' ', '_')} ({dish['price']} zł): {dish['description']}\n\n"
 
                 await message.answer(dish_list)
             else:

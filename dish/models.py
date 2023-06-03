@@ -29,7 +29,7 @@ class Dish(models.Model):
 
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    is_vegan = models.CharField(max_length=20, choices=DIET_CHOICES, default='non-vegan')
+    is_vegan = models.CharField(max_length=20, choices=DIET_CHOICES, default='non-vegetarian')
     spiciness = models.CharField(max_length=20, choices=SPICY_CHOICES, default='mild')
     photo = models.ImageField(upload_to='media/', blank=True)
     tag = models.CharField(max_length=50, choices=TAG_CHOICES)
