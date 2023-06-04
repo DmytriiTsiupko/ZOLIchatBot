@@ -17,8 +17,10 @@ class Dish(models.Model):
         ('Pasta', 'Pasta'),
         ('Starters', 'Starters'),
         ('Cafeteria', 'Cafeteria'),
+        ('Apiritivi', 'Aperitivo'),
+        ('Beer', 'Beer'),
         ('Drinks', 'Drinks'),
-        ('Alcohol', 'Alcohol'),
+        ('Desserts', 'Desserts'),
         ('Gnocchi (potato)', 'Gnocchi (potato)'),
         ('Gnocchi (cheese)', 'Gnocchi (cheese)'),
         ('Ravioli', 'Ravioli'),
@@ -29,6 +31,7 @@ class Dish(models.Model):
 
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
+    detail_description = models.TextField(blank=True)
     is_vegan = models.CharField(max_length=20, choices=DIET_CHOICES, default='non-vegetarian')
     spiciness = models.CharField(max_length=20, choices=SPICY_CHOICES, default='mild')
     photo = models.ImageField(upload_to='media/', blank=True)

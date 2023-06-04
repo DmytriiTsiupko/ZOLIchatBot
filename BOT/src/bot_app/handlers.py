@@ -6,7 +6,7 @@ from .bot import dp
 from .states import States
 from .data_fetcher import get_dishes, get_dishes_by_tag, get_dish_info, get_photo_from_url
 
-from .massages_ENG import WELCOME_MASSAGE, MANE_MANU_MASSAGE, RULES
+from .messages_ENG import WELCOME_MASSAGE, MANE_MANU_MASSAGE, RULES
 from .keyboards import create_start_buttons, get_menu_keyboard, get_back_keyboard
 
 
@@ -96,25 +96,25 @@ async def tag_handler(message: types.Message, state: FSMContext):
 @dp.message_handler(lambda message: message.text.startswith('/'), state=States.menu_state)
 async def detail_dish_handler(message: types.Message, state: FSMContext):
 
-    dish_name = message.text[1:].replace('_', ' ')  # Видаляємо знак "/" з початку назви страви
-    dish_info = await get_dish_info(dish_name)  # Отримуємо інформацію про страву з сервера
+    dish_name = message.text[1:].replace('_', ' ')
+    dish_info = await get_dish_info(dish_name)
 
     if dish_info:
-        # Отримання інформації про страву
+
         dish = dish_info[0]
         name = dish.get('name')
-        description = dish.get('description')
+        detail_description = dish.get('detail_description')
         photo_url = dish.get('photo')
 
         if photo_url:
             photo = await get_photo_from_url(photo_url)
 
-            await message.answer_photo(photo, caption=f"- {name}:\n{description}")
+            await message.answer_photo(photo, caption=f"{name.upper()}\n\n{detail_description}")
 
         else:
-            await message.answer(f"- {name}:\n{description}")
+            await message.answer(f"{name.upper()}:\n\n{detail_description}")
     else:
-        await message.answer("Dish not found")  # В разі, якщо страву не знайдено
+        await message.answer("Dish not found")
 
 
 # ==== BACK BUTTON HANDLER ====

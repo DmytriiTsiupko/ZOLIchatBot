@@ -5,4 +5,4 @@ from .models import Dish
 class DishSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dish
-        fields = ('id', 'name', 'price', 'is_vegan', 'spiciness', 'description', 'photo', 'tag')
+        fields = ('id', 'name', 'price', 'is_vegan', 'spiciness', 'description', 'detail_description', 'photo', 'tag')
