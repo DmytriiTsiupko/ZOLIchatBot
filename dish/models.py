@@ -14,17 +14,17 @@ class Dish(models.Model):
     TAG_CHOICES = [
         ('Pizza Rosse', 'Pizza Rosse'),
         ('Pizza Bianche', 'Pizza Bianche'),
-        ('Makaron', 'Makaron'),
-        ('Przystawki', 'Przystawki'),
+        ('Pasta', 'Pasta'),
+        ('Starters', 'Starters'),
         ('Cafeteria', 'Cafeteria'),
-        ('Bevande', 'Bevande'),
+        ('Drinks', 'Drinks'),
         ('Alcohol', 'Alcohol'),
-        ('Gnocchi ziemniaczane', 'Gnocchi ziemniaczane'),
-        ('Gnocchi serowe', 'Gnocchi serowe'),
+        ('Gnocchi (potato)', 'Gnocchi (potato)'),
+        ('Gnocchi (cheese)', 'Gnocchi (cheese)'),
         ('Ravioli', 'Ravioli'),
         ('Lasagne', 'Lasagne'),
-        ('Sałatki', 'Sałatki'),
-        ('Zupy', 'Zupy')
+        ('Salads', 'Salads'),
+        ('Soups', 'Soups')
     ]
 
     name = models.CharField(max_length=100)
