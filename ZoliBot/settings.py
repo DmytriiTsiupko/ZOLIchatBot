@@ -31,8 +31,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dish.apps.DishConfig',
-    'user.apps.UserConfig',
-    'language.apps.LanguageConfig',
     'rest_framework',
 ]
 
