@@ -75,7 +75,7 @@ DATABASES = {
         'NAME': 'ZoliDataBase',
         'USER': 'ZoliBot',
         'PASSWORD': 'ZoliBot',
-        'HOST': 'database',
+        'HOST': '0.0.0.0',
         'PORT': '5432',
     }
 }
