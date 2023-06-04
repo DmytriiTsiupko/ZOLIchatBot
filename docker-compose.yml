@@ -1,0 +1,95 @@
+version: "3.8"
+
+services:
+  app:
+    image: dmytriit/rd-django-project:latest
+    command: gunicorn --bind :8000 --workers 3 -t 60 ZoliBot.wsgi:application
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+    env_file:
+      - .env
+    networks:
+      - broker_network
+      - nginx_network
+      - database_network
+
+  bot:
+    build: /Users/Dmyrii/Documents/DEVELOPMENT/MyProjects/ZOLIchatBot/BOT
+    command: python bot_script.py
+    restart: always
+    depends_on:
+      - database
+    env_file:
+      - .env
+    networks:
+      - broker_network
+      - database_network
+      - nginx_network
+
+  database:
+    image: postgres:14-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=ZoliBot
+      - POSTGRES_PASSWORD=ZoliBot
+      - POSTGRES_DB=ZoliDataBase
+    networks:
+      - database_network
+
+  broker:
+    image: redis:6.0.4-alpine
+    networks:
+      - broker_network
+    volumes:
+      - broker_data:/data
+
+  celery_worker:
+    image: dmytriit/rd-django-project:latest
+    command: celery -A ZoliBot worker
+    restart: always
+    depends_on:
+      - database
+    env_file:
+      - .env
+    networks:
+      - broker_network
+      - database_network
+
+  celery_beat:
+    image: dmytriit/rd-django-project:latest
+    command: celery -A ZoliBot beat
+    restart: always
+    depends_on:
+      - database
+    env_file:
+      - .env
+    networks:
+      - broker_network
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    networks:
+      - nginx_network
+    depends_on:
+      - app
+
+networks:
+  broker_network:
+    name: broker_network
+    driver: bridge
+  nginx_network:
+    name: nginx_network
+    driver: bridge
+  database_network:
+    name: database_network
+    driver: bridge
+
+volumes:
+  postgres_data:
+  broker_data:
