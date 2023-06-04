@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   app:
-    image: dmytriit/rd-django-project:latest
+    image: dmytriit/zoli_bot:latest
     command: gunicorn --bind :8000 --workers 3 -t 60 ZoliBot.wsgi:application
     restart: always
     ports:
@@ -17,8 +17,8 @@ services:
       - database_network
 
   bot:
-    build: /Users/Dmyrii/Documents/DEVELOPMENT/MyProjects/ZOLIchatBot/BOT
-    command: python bot_script.py
+    image: dmytriit/zoli_bot:latest
+    command: python BOT/main.py
     restart: always
     depends_on:
       - database
@@ -48,7 +48,7 @@ services:
       - broker_data:/data
 
   celery_worker:
-    image: dmytriit/rd-django-project:latest
+    image: dmytriit/zoli_bot:latest
     command: celery -A ZoliBot worker
     restart: always
     depends_on:
@@ -60,7 +60,7 @@ services:
       - database_network
 
   celery_beat:
-    image: dmytriit/rd-django-project:latest
+    image: dmytriit/zoli_bot:latest
     command: celery -A ZoliBot beat
     restart: always
     depends_on:
