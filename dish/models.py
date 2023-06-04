@@ -14,21 +14,24 @@ class Dish(models.Model):
     TAG_CHOICES = [
         ('Pizza Rosse', 'Pizza Rosse'),
         ('Pizza Bianche', 'Pizza Bianche'),
-        ('Makaron', 'Makaron'),
-        ('Przystawki', 'Przystawki'),
+        ('Pasta', 'Pasta'),
+        ('Starters', 'Starters'),
         ('Cafeteria', 'Cafeteria'),
-        ('Bevande', 'Bevande'),
-        ('Alcohol', 'Alcohol'),
-        ('Gnocchi ziemniaczane', 'Gnocchi ziemniaczane'),
-        ('Gnocchi serowe', 'Gnocchi serowe'),
+        ('Apiritivi', 'Aperitivo'),
+        ('Beer', 'Beer'),
+        ('Drinks', 'Drinks'),
+        ('Desserts', 'Desserts'),
+        ('Gnocchi (potato)', 'Gnocchi (potato)'),
+        ('Gnocchi (cheese)', 'Gnocchi (cheese)'),
         ('Ravioli', 'Ravioli'),
         ('Lasagne', 'Lasagne'),
-        ('Sałatki', 'Sałatki'),
-        ('Zupy', 'Zupy')
+        ('Salads', 'Salads'),
+        ('Soups', 'Soups')
     ]
 
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
+    detail_description = models.TextField(blank=True)
     is_vegan = models.CharField(max_length=20, choices=DIET_CHOICES, default='non-vegetarian')
     spiciness = models.CharField(max_length=20, choices=SPICY_CHOICES, default='mild')
     photo = models.ImageField(upload_to='media/', blank=True)
