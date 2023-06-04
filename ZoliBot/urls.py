@@ -7,8 +7,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('dishes/', include('dish.urls')),
-    path('users/', include('user.urls')),
-    path('languages/', include('language.urls'))
 ]
 
 if settings.DEBUG:
