@@ -8,10 +8,21 @@ A bot that helps restaurant customers learn more about the dishes served, showin
 
 ## Functionality
 
-- Retrieving information from external services or data sources
-- Responding to specific commands or user queries
-- Storing user data and their states
-- Interacting with a database for data storage and retrieval
+Sure! Here are the functionalities for your Telegram bot:
+
+1. **/start command**: Upon starting the interaction with the bot, it will greet the user and provide instructions on how to use it.
+
+2. **The button "Menu"**: When this command is triggered, the bot will display the restaurant's menu categorized by types of dishes (e.g., soups, main courses, desserts). The user can select a specific type of dish.
+
+3. **Displaying dishes**: After choosing a type of dish, the bot will show a list of dishes belonging to that category. The user can select a particular dish to obtain more detailed information.
+
+4. **Dish description**: Upon selecting a specific dish, the bot will provide a full description of the dish. The description may include information about the ingredients, preparation method, origin, etc.
+
+5. **Dish visual representation**: After displaying the dish description, the bot can send a photograph to showcase how the dish looks. The photograph can be attached to the message or sent as a link to an image.
+
+6. **The button "Rules"**: When this command is invoked, the bot will present the restaurant's rules. These rules could cover behavior guidelines, ordering procedures, operating hours, etc.
+
+Please note that the functionalities mentioned above serve as a basic outline, and you can customize them further based on your specific requirements and preferences.
 
 ## Installation and Setup
 
@@ -27,14 +38,20 @@ git clone https://github.com/DmytriiTsiupko/ZOLIchatBot
 pip install -r requirements.txt
 ```
 
-3. Create a `.env` file and provide the necessary configuration data, for example:
+3.Create a `.env` file and provide the necessary configuration data, for example:
 
 ```
 BOT_TOKEN=your_bot_token
-API_KEY=your_api_key
+SECRET_KEY=your_api_key
 ```
 
-4. Run the bot:
+
+4. Run command "docker compose -d"
+
+```
+docker compose -d
+```
+5. :
 
 ```
 python main.py
