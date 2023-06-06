@@ -1,6 +1,6 @@
-# ZOLIchatBot
+# ZOLIchatBot 1.0
 
-Telegram Bot
+Telegram Bot for Restaurant
 
 ## Project Description
 
@@ -10,19 +10,10 @@ A bot that helps restaurant customers learn more about the dishes served, showin
 
 Sure! Here are the functionalities for your Telegram bot:
 
-1. **/start command**: Upon starting the interaction with the bot, it will greet the user and provide instructions on how to use it.
-
-2. **The button "Menu"**: When this command is triggered, the bot will display the restaurant's menu categorized by types of dishes (e.g., soups, main courses, desserts). The user can select a specific type of dish.
-
-3. **Displaying dishes**: After choosing a type of dish, the bot will show a list of dishes belonging to that category. The user can select a particular dish to obtain more detailed information.
-
-4. **Dish description**: Upon selecting a specific dish, the bot will provide a full description of the dish. The description may include information about the ingredients, preparation method, origin, etc.
-
-5. **Dish visual representation**: After displaying the dish description, the bot can send a photograph to showcase how the dish looks. The photograph can be attached to the message or sent as a link to an image.
-
-6. **The button "Rules"**: When this command is invoked, the bot will present the restaurant's rules. These rules could cover behavior guidelines, ordering procedures, operating hours, etc.
-
-Please note that the functionalities mentioned above serve as a basic outline, and you can customize them further based on your specific requirements and preferences.
+1. Command /start: initiates interaction with the bot and opens two buttons for interacting with the restaurant menu: "Menu" and "Rules".
+2. Button "Menu": creates a list of dish categories and positions as a keyboard for the user, based on the dish tags present in the database. Users can select a dish category and view the full list of dishes with a short description for each dish based on the chosen category (this information is stored in the "description" field of the model object in the Django admin panel).
+3. Button "Rules": displays the restaurant rules in text format;
+4. When a specific dish name is selected from the dish list after selecting a category, detailed information about the dish is shown, including a photo of the dish (this information is stored in the "detail_description" and "photo" fields of the model object in the Django admin panel).
 
 ## Installation and Setup
 
@@ -51,10 +42,17 @@ SECRET_KEY=your_api_key
 ```
 docker compose -d
 ```
-5. :
+
+5. Run the server:
 
 ```
-python main.py
+python manage.py run server
+```
+
+6. Run the bot:
+
+```
+pytnon main.py
 ```
 
 ## Making Changes and Development
